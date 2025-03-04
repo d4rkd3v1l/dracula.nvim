@@ -68,8 +68,8 @@ local function setup(configs)
       StorageClass = { fg = colors.pink, },
       Structure = { fg = colors.yellow, },
       TypeDef = { fg = colors.yellow, },
-      Special = { fg = colors.green, italic = true },
-      SpecialComment = { fg = colors.comment, italic = true, },
+      Special = { fg = colors.green },
+      SpecialComment = { fg = colors.comment },
       Error = { fg = colors.bright_red, },
       Todo = { fg = colors.purple, bold = true, italic = true, },
       Underlined = { fg = colors.cyan, underline = true, },
@@ -134,7 +134,8 @@ local function setup(configs)
       ['@error'] = { fg = colors.bright_red, },
       ['@punctuation.delimiter'] = { fg = colors.fg, },
       ['@punctuation.bracket'] = { fg = colors.fg, },
-      ['@markup.list'] = { fg = colors.cyan, },
+      ['@markup.list'] = { fg = colors.fg, },
+      ['@markup.list.checked'] = { link = "Conceal" },
 
       ['@constant'] = { fg = colors.purple, },
       ['@constant.builtin'] = { fg = colors.purple, },
@@ -182,14 +183,16 @@ local function setup(configs)
       ['@variable'] = { fg = colors.fg, },
       ['@variable.builtin'] = { fg = colors.purple, },
 
-      ['@markup'] = { fg = colors.orange, },
+      ['@markup'] = { fg = colors.green, },
       ['@markup.strong'] = { fg = colors.orange, bold = true, },     -- bold
       ['@markup.emphasis'] = { fg = colors.yellow, italic = true, }, -- italic
-      ['@markup.underline'] = { fg = colors.orange, },
+      ['@markup.italic'] = { link = "@markup.emphasis" },
+      ['@markup.underline'] = { fg = colors.purple, },
+      ['@markup.strikethrough'] = { fg = colors.comment, strikethrough = true },
       ['@markup.heading'] = { fg = colors.pink, bold = true, },        -- title
-      ['@markup.raw'] = { fg = colors.yellow, },                 -- inline code
-      ['@markup.link.url'] = { fg = colors.yellow, italic = true, },      -- urls
-      ['@markup.link'] = { fg = colors.orange, bold = true, },
+      ['@markup.raw'] = { fg = colors.purple, },                 -- inline code
+      ['@markup.link.url'] = { fg = colors.purple, },      -- urls
+      ['@markup.link'] = { fg = colors.cyan, bold = true, },
 
       ['@tag'] = { fg = colors.cyan, },
       ['@tag.attribute'] = { fg = colors.green, },
@@ -246,14 +249,14 @@ local function setup(configs)
       markdownBlockquote = { fg = colors.yellow, italic = true, },
       markdownBold = { fg = colors.orange, bold = true, },
       markdownCode = { fg = colors.green, },
-      markdownCodeBlock = { fg = colors.orange, },
+      markdownCodeBlock = { fg = colors.orange, bg = colors.menu },
       markdownCodeDelimiter = { fg = colors.red, },
-      markdownH2 = { link = "rainbow2" },
-      markdownH1 = { link = "rainbow1" },
-      markdownH3 = { link = "rainbow3" },
-      markdownH4 = { link = "rainbow4" },
-      markdownH5 = { link = "rainbow5" },
-      markdownH6 = { link = "rainbow6" },
+      markdownH1 = { link = "rainbowcol1" },
+      markdownH2 = { link = "rainbowcol2" },
+      markdownH3 = { link = "rainbowcol3" },
+      markdownH4 = { link = "rainbowcol4" },
+      markdownH5 = { link = "rainbowcol5" },
+      markdownH6 = { link = "rainbowcol6" },
       markdownHeadingDelimiter = { fg = colors.red, },
       markdownHeadingRule = { fg = colors.comment, },
       markdownId = { fg = colors.purple, },
@@ -265,12 +268,23 @@ local function setup(configs)
       markdownListMarker = { fg = colors.cyan, },
       markdownOrderedListMarker = { fg = colors.red, },
       markdownRule = { fg = colors.comment, },
-      ['@markup.heading.1.markdown'] = { link = 'rainbowcol1' },
-		['@markup.heading.2.markdown'] = { link = 'rainbowcol2' },
-		['@markup.heading.3.markdown'] = { link = 'rainbowcol3' },
-		['@markup.heading.4.markdown'] = { link = 'rainbowcol4' },
-		['@markup.heading.5.markdown'] = { link = 'rainbowcol5' },
-		['@markup.heading.6.markdown'] = { link = 'rainbowcol6' },
+      ['@markup.quote.markdown'] = { fg = colors.green },
+      ['@punctuation.special.markdown'] = { fg = colors.fg },
+      ['@markup.heading.1.markdown'] = { fg = colors.fg, bold = true },
+      ['@markup.heading.2.markdown'] = { fg = colors.green, bold = true },
+      ['@markup.heading.3.markdown'] = { fg = colors.cyan, bold = true },
+      ['@markup.heading.4.markdown'] = { fg = colors.pink, bold = true },
+      ['@markup.heading.5.markdown'] = { fg = colors.purple, bold = true },
+      ['@markup.heading.6.markdown'] = { fg = colors.orange, bold = true },
+
+      -- Render-Markdown
+      ['RenderMarkdownH1Bg'] = { fg = colors.bg, bg = colors.fg },
+      ['RenderMarkdownH2Bg'] = { fg = colors.bg, bg = colors.green },
+      ['RenderMarkdownH3Bg'] = { fg = colors.bg, bg = colors.cyan },
+      ['RenderMarkdownH4Bg'] = { fg = colors.bg, bg = colors.pink },
+      ['RenderMarkdownH5Bg'] = { fg = colors.bg, bg = colors.purple },
+      ['RenderMarkdownH6Bg'] = { fg = colors.bg, bg = colors.orange },
+      RenderMarkdownCode = { bg = colors.menu },
 
       --  Diff
       diffAdded = { fg = colors.green, },
@@ -339,9 +353,9 @@ local function setup(configs)
 
       -- Bufferline
       BufferLineIndicatorSelected = { fg = colors.purple, },
-      BufferLineFill = { bg = colors.black, },
-      BufferLineBufferSelected = { bg = colors.bg, },
-      BufferLineSeparator = { fg = colors.black },
+      BufferLineFill = { bg = colors.bg, },
+      BufferLineBufferSelected = { bg = colors.bg, bold = true, },
+      BufferLineSeparator = { fg = colors.bg },
 
       -- LSP
       DiagnosticError = { fg = colors.red, },
